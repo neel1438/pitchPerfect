@@ -43,9 +43,6 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sHJ-E9-wCX">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                 <state key="normal" title="Button" image="chipmunk"/>
-                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="47" y="238" width="152" height="100"/>
-                                </variation>
                                 <connections>
                                     <action selector="playChipmunkAudio:" destination="j7B-wO-Fds" eventType="touchUpInside" id="jTI-qZ-6uX"/>
                                 </connections>
@@ -53,9 +50,6 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aZY-bK-mFc">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                 <state key="normal" title="Button" image="darthVader"/>
-                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="207" y="238" width="153" height="100"/>
-                                </variation>
                                 <connections>
                                     <action selector="playDarthAudio:" destination="j7B-wO-Fds" eventType="touchUpInside" id="Ifo-Fa-wF9"/>
                                 </connections>
@@ -63,9 +57,6 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8mS-EA-w8s">
                                 <rect key="frame" x="-23" y="-15" width="46" height="30"/>
                                 <state key="normal" title="Button" image="echo"/>
-                                <variation key="heightClass=regular-widthClass=compact" misplaced="YES">
-                                    <rect key="frame" x="55" y="360" width="83" height="80"/>
-                                </variation>
                                 <connections>
                                     <action selector="playEchoAudio:" destination="j7B-wO-Fds" eventType="touchUpInside" id="u7L-qV-meo"/>
                                 </connections>
@@ -96,18 +87,18 @@
                                 <exclude reference="8mS-EA-w8s"/>
                             </mask>
                             <mask key="constraints">
-                                <exclude reference="QWj-Zr-0ER"/>
-                                <exclude reference="szo-rP-MKr"/>
-                                <exclude reference="385-Dm-b7j"/>
-                                <exclude reference="Xci-l0-aMt"/>
-                                <exclude reference="EXx-xq-kkC"/>
-                                <exclude reference="vur-3x-vf2"/>
-                                <exclude reference="jhy-Mr-keC"/>
-                                <exclude reference="q2z-DV-JrE"/>
+                                <exclude reference="St5-qp-tei"/>
+                                <exclude reference="M5A-Lt-PkG"/>
                                 <exclude reference="AXo-l9-wcm"/>
                                 <exclude reference="VgF-O1-NNP"/>
-                                <exclude reference="M5A-Lt-PkG"/>
-                                <exclude reference="St5-qp-tei"/>
+                                <exclude reference="QWj-Zr-0ER"/>
+                                <exclude reference="szo-rP-MKr"/>
+                                <exclude reference="jhy-Mr-keC"/>
+                                <exclude reference="q2z-DV-JrE"/>
+                                <exclude reference="EXx-xq-kkC"/>
+                                <exclude reference="vur-3x-vf2"/>
+                                <exclude reference="385-Dm-b7j"/>
+                                <exclude reference="Xci-l0-aMt"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">
@@ -120,18 +111,18 @@
                                 <include reference="8mS-EA-w8s"/>
                             </mask>
                             <mask key="constraints">
-                                <include reference="QWj-Zr-0ER"/>
-                                <include reference="szo-rP-MKr"/>
-                                <include reference="385-Dm-b7j"/>
-                                <include reference="Xci-l0-aMt"/>
-                                <include reference="EXx-xq-kkC"/>
-                                <include reference="vur-3x-vf2"/>
-                                <include reference="jhy-Mr-keC"/>
-                                <include reference="q2z-DV-JrE"/>
+                                <include reference="St5-qp-tei"/>
+                                <include reference="M5A-Lt-PkG"/>
                                 <include reference="AXo-l9-wcm"/>
                                 <include reference="VgF-O1-NNP"/>
-                                <include reference="M5A-Lt-PkG"/>
-                                <include reference="St5-qp-tei"/>
+                                <include reference="QWj-Zr-0ER"/>
+                                <include reference="szo-rP-MKr"/>
+                                <include reference="jhy-Mr-keC"/>
+                                <include reference="q2z-DV-JrE"/>
+                                <include reference="EXx-xq-kkC"/>
+                                <include reference="vur-3x-vf2"/>
+                                <include reference="385-Dm-b7j"/>
+                                <include reference="Xci-l0-aMt"/>
                             </mask>
                         </variation>
                     </view>
