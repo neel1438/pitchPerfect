@@ -34,20 +34,22 @@ class PlaySoundViewController: UIViewController {
         audioPlayer.currentTime = 0.0
         audioPlayer.play()
     }
-    
+    func playAudioPlayerNode(audioPlayerNode:AVAudioPlayerNode!){
+        audioPlayerNode.scheduleFile(audioFile, atTime: nil, completionHandler: nil)
+        try! audioEngine.start()
+        audioPlayerNode.play()
+    }
+
     func playAudioWithVariablePitch(pitch: Float){
-       stopAudioAndReset()
+        stopAudioAndReset()
         let audioPlayerNode=AVAudioPlayerNode()
         audioEngine.attachNode(audioPlayerNode)
-        
         let changePitchEffect=AVAudioUnitTimePitch()
         changePitchEffect.pitch = pitch
         audioEngine.attachNode(changePitchEffect)
         audioEngine.connect(audioPlayerNode, to: changePitchEffect, format: nil)
         audioEngine.connect(changePitchEffect, to: audioEngine.outputNode, format: nil)
-        audioPlayerNode.scheduleFile(audioFile, atTime: nil, completionHandler: nil)
-        try! audioEngine.start()
-        audioPlayerNode.play()
+        playAudioPlayerNode(audioPlayerNode)
     }
     
     func playAudioWithEcho(delayTime: NSTimeInterval!){
@@ -59,9 +61,7 @@ class PlaySoundViewController: UIViewController {
         audioEngine.attachNode(echoNode)
         audioEngine.connect(audioPlayerNode, to: echoNode, format: nil)
         audioEngine.connect(echoNode, to: audioEngine.outputNode, format: nil)
-        audioPlayerNode.scheduleFile(audioFile, atTime: nil, completionHandler: nil)
-        try! audioEngine.start()
-        audioPlayerNode.play()
+        playAudioPlayerNode(audioPlayerNode)
     }
 
     @IBAction func playSlowAudio(sender: UIButton) {
