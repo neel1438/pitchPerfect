@@ -9,7 +9,7 @@
 import UIKit
 import  AVFoundation
 
-class playSoundViewController: UIViewController {
+class PlaySoundViewController: UIViewController {
     
     var audioPlayer: AVAudioPlayer!
     var receivedAudio: RecordedAudio!
@@ -26,32 +26,17 @@ class playSoundViewController: UIViewController {
         try? AVAudioSession.sharedInstance().setActive(true)
         audioEngine = AVAudioEngine()
         audioFile = try! AVAudioFile(forReading: receivedAudio.filePathUrl)
-
-        
-    }
-    override func viewWillAppear(animated: Bool) {
-        
-    }
-    override func viewDidAppear(animated: Bool) {
-        
-    }
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     func playAudio(speed:Float){
-        audioPlayer.stop()
-        audioEngine.stop()
-        audioEngine.reset()
+        stopAudioAndReset()
         audioPlayer.rate = speed
         audioPlayer.currentTime = 0.0
         audioPlayer.play()
     }
+    
     func playAudioWithVariablePitch(pitch: Float){
-        audioPlayer.stop()
-        audioEngine.stop()
-        audioEngine.reset()
+       stopAudioAndReset()
         let audioPlayerNode=AVAudioPlayerNode()
         audioEngine.attachNode(audioPlayerNode)
         
@@ -64,10 +49,9 @@ class playSoundViewController: UIViewController {
         try! audioEngine.start()
         audioPlayerNode.play()
     }
+    
     func playAudioWithEcho(delayTime: NSTimeInterval!){
-        audioPlayer.stop()
-        audioEngine.stop()
-        audioEngine.reset()
+        stopAudioAndReset()
         let audioPlayerNode=AVAudioPlayerNode()
         audioEngine.attachNode(audioPlayerNode)
         let echoNode=AVAudioUnitDelay()
@@ -92,17 +76,23 @@ class playSoundViewController: UIViewController {
         playAudioWithVariablePitch(1000)
         
     }
+    
     @IBAction func playDarthAudio(sender: UIButton) {
          playAudioWithVariablePitch(-1000)
     }
+    
     @IBAction func playEchoAudio(sender: UIButton) {
         playAudioWithEcho(NSTimeInterval(0.3))
     }
-
-    @IBAction func stopAudio(sender: UIButton) {
+    
+    func stopAudioAndReset(){
         audioPlayer.stop()
         audioEngine.stop()
         audioEngine.reset()
+    }
+
+    @IBAction func stopAudio(sender: UIButton) {
+        stopAudioAndReset()
     }
     
 }

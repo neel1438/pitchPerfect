@@ -9,7 +9,7 @@
 import UIKit
 import AVFoundation
 
-class recordSoundsViewController: UIViewController,AVAudioRecorderDelegate{
+class RecordSoundsViewController: UIViewController,AVAudioRecorderDelegate{
 
     @IBOutlet weak var recordingTextLabel: UILabel!
     
@@ -20,19 +20,9 @@ class recordSoundsViewController: UIViewController,AVAudioRecorderDelegate{
     var audioRecorder:AVAudioRecorder!
     var recordedAudio:RecordedAudio!
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-    }
     override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
         stopButton.hidden=true;
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    override func viewDidAppear(animated: Bool) {
         recordingTextLabel.hidden = false
         recordingTextLabel.text="Tap To Record"
     }
@@ -44,9 +34,6 @@ class recordSoundsViewController: UIViewController,AVAudioRecorderDelegate{
        
         let dirPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as String
         
-//        let currentDateTime = NSDate()
-//        let formatter = NSDateFormatter()
-//        formatter.dateFormat = "ddMMyyyy-HHmmss"
         let recordingName = "myRecording.wav"
         let pathArray = [dirPath, recordingName]
         let filePath = NSURL.fileURLWithPathComponents(pathArray)
@@ -61,11 +48,12 @@ class recordSoundsViewController: UIViewController,AVAudioRecorderDelegate{
         audioRecorder.prepareToRecord()
         audioRecorder.record()
     }
+    
     func audioRecorderDidFinishRecording(recorder: AVAudioRecorder, successfully flag: Bool) {
         if(flag){
             print("recording done")
             recordedAudio=RecordedAudio(filePathUrl: recorder.url,title: recorder.url.lastPathComponent!)
-            self.performSegueWithIdentifier("stopRecording", sender :recordedAudio)
+            performSegueWithIdentifier("stopRecording", sender :recordedAudio)
         }else{
             recordButton.enabled=true
             stopButton.hidden=true
@@ -75,7 +63,7 @@ class recordSoundsViewController: UIViewController,AVAudioRecorderDelegate{
     }
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if(segue.identifier == "stopRecording"){
-            let playSoundVC:playSoundViewController = segue.destinationViewController as! playSoundViewController
+            let playSoundVC:PlaySoundViewController = segue.destinationViewController as! PlaySoundViewController
             let data = sender as! RecordedAudio
             playSoundVC.receivedAudio=data
         }
