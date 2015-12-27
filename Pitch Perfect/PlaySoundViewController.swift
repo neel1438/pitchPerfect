@@ -34,34 +34,29 @@ class PlaySoundViewController: UIViewController {
         audioPlayer.currentTime = 0.0
         audioPlayer.play()
     }
-    func playAudioPlayerNode(audioPlayerNode:AVAudioPlayerNode!){
+
+    func playAudioWithEffect(effectNode :AVAudioNode!){
+        stopAudioAndReset()
+        let audioPlayerNode=AVAudioPlayerNode()
+        audioEngine.attachNode(audioPlayerNode)
+        audioEngine.attachNode(effectNode)
+        audioEngine.connect(audioPlayerNode, to: effectNode, format: nil)
+        audioEngine.connect(effectNode, to: audioEngine.outputNode, format: nil)
         audioPlayerNode.scheduleFile(audioFile, atTime: nil, completionHandler: nil)
         try! audioEngine.start()
         audioPlayerNode.play()
     }
 
     func playAudioWithVariablePitch(pitch: Float){
-        stopAudioAndReset()
-        let audioPlayerNode=AVAudioPlayerNode()
-        audioEngine.attachNode(audioPlayerNode)
         let changePitchEffect=AVAudioUnitTimePitch()
-        changePitchEffect.pitch = pitch
-        audioEngine.attachNode(changePitchEffect)
-        audioEngine.connect(audioPlayerNode, to: changePitchEffect, format: nil)
-        audioEngine.connect(changePitchEffect, to: audioEngine.outputNode, format: nil)
-        playAudioPlayerNode(audioPlayerNode)
+        changePitchEffect.pitch=pitch
+        playAudioWithEffect(changePitchEffect)
     }
     
     func playAudioWithEcho(delayTime: NSTimeInterval!){
-        stopAudioAndReset()
-        let audioPlayerNode=AVAudioPlayerNode()
-        audioEngine.attachNode(audioPlayerNode)
         let echoNode=AVAudioUnitDelay()
         echoNode.delayTime=delayTime
-        audioEngine.attachNode(echoNode)
-        audioEngine.connect(audioPlayerNode, to: echoNode, format: nil)
-        audioEngine.connect(echoNode, to: audioEngine.outputNode, format: nil)
-        playAudioPlayerNode(audioPlayerNode)
+        playAudioWithEffect(echoNode)
     }
 
     @IBAction func playSlowAudio(sender: UIButton) {
